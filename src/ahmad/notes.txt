@@ -19,3 +19,235 @@ Notes on Selenium IDE (summary):
 - Part of the Selenium suite aimed at speeding up the creation of automation scripts.
 - Useful for prototyping and for users who want to record-and-playback interactions.
 
+Selenium IDE — Additional features and notes:
+
+- Cross-browser support: The new Selenium IDE (rebuild) supports both Chrome and Firefox. Previously it was only a Firefox plugin. This expands where recorded tests can run and makes the tool more versatile.
+
+- Improved locator functionality: Locator algorithms and suggestions were improved to produce more reliable selectors (better handling of IDs, CSS, XPaths and more robust fallback options).
+
+- Parallel execution: Tests can be executed in parallel using the Selenium command-line runner, which speeds up test suites by running multiple tests simultaneously.
+
+- Control flow statements: The IDE provides provisions for control flow constructs (like if/else, loops), enabling more flexible test logic without exporting to code.
+
+- Automatic waiting: The IDE automatically waits for pages/elements to load, reducing flaky failures due to timing issues and eliminating many manual waits.
+
+- Embedded code / run JavaScript: Supports embedding custom code snippets (JavaScript) in test steps, allowing advanced interactions or evaluations when needed.
+
+- Built-in debugger: The IDE includes a debugger that allows step execution and adding breakpoints to inspect state and control test flow during playback.
+
+- Code export: The new version supports exporting recorded tests to code in different languages/frameworks (e.g., WebDriver-based scripts), which helps transition from prototyping to maintainable code.
+
+Working principle
+
+- Recording: Selenium IDE records user interactions with the browser (clicks, typing, navigation) which constitute the IDE script. This is the first step to capture a test scenario.
+
+- Playing back: The recorded script is executed to verify and monitor its stability and success rate. Playback helps validate that the recorded steps reproduce the expected behavior.
+
+- Saving: After validation, the recorded script is saved for future runs and regression testing so it can be reused and integrated into test suites.
+ - Saving: After validation, the recorded script is saved for future runs and regression testing so it can be reused and integrated into test suites.
+
+Common Selenium IDE commands (examples)
+
+- open <url>
+	- Description: Navigate the browser to the specified URL (relative to base URL if configured).
+	- Example: open /login
+
+- click <locator>
+	- Description: Click on an element found by the locator.
+	- Example: click css=button.submit or click id=submitBtn
+
+- type <locator> <text>
+	- Description: Type text into an input field located by the locator.
+	- Example: type id=username myusername
+
+- sendKeys <locator> <keys>
+	- Description: Send key presses to an element (useful for special keys like ENTER).
+	- Example: sendKeys id=searchBox ${KEY_ENTER}
+
+- select <locator> <option>
+	- Description: Select an option from a dropdown by visible text or value.
+	- Example: select id=country "United States"
+
+- assertText / verifyText <locator> <text>
+	- Description: Assert or verify the visible text of an element matches expected text. `assert` fails the test immediately; `verify` records failure but continues.
+	- Example: assertText css=h1.page-title "Welcome"
+
+- waitForElementPresent <locator>
+	- Description: Wait until the element is present in the DOM.
+	- Example: waitForElementPresent id=result
+
+- storeText <locator> <variableName>
+	- Description: Store the text of an element into a variable for later use.
+	- Example: storeText css=.user-id userId
+
+- runScript / executeScript <javascript>
+	- Description: Execute custom JavaScript in the context of the page.
+	- Example: runScript return document.title;
+
+- pause <milliseconds>
+	- Description: Pause test execution for a fixed time (not usually recommended; prefer waits).
+	- Example: pause 1000
+
+Selenium commands — Categories
+
+- Actions
+	- Description: Commands that perform user interactions on the page.
+	- Examples: click, clickAndWait, type, typeAndWait, sendKeys, select
+	- Note: Use the "AndWait" variants if you need the command to wait for page load after the action.
+
+- Accessors
+	- Description: Commands that read or store values from the page into variables for later use.
+	- Examples: storeText, storeValue, storeAttribute
+	- Example usage: storeText css=.user-id userId  (stores visible text into `userId`)
+
+Accessors — detailed examples
+
+- store <variable> <value>
+	- Description: Store a user-defined value into a variable.
+	- Example: store "hello world" greeting
+
+- storeTitle <variableName>
+	- Description: Store the current page title into a variable.
+	- Example: storeTitle pageTitle
+
+- storeText <locator> <variableName>
+	- Description: Store the visible text of an element into a variable.
+	- Example: storeText css=#cart-count cartCount
+
+- storeValue <locator> <variableName>
+	- Description: Store the value attribute of a form element into a variable.
+	- Example: storeValue id=searchBox searchValue
+
+Forms of assertion
+
+- Assert
+	- Behavior: Immediately fails the test if the assertion does not hold; test execution stops.
+	- Example: assertText css=h1 "Cart"
+
+- Verify
+	- Behavior: Checks the expected condition; if it fails, the failure is recorded but the test continues.
+	- Example: verifyText css=.message "Item added"
+
+- Wait for
+	- Behavior: Waits until a condition is true (element present, text present, etc.) before proceeding; useful for handling asynchronous updates.
+	- Example: waitForElementPresent id=result
+
+Debugging in IDE
+
+- Step execution
+	- Execute the test step-by-step to inspect behavior and intermediate state.
+
+- Breakpoints
+	- Adding/removing/disabling breakpoints lets you pause at specific steps.
+
+- Play to this point
+	- Enter the debugger by using the "Play to this point" option to run until a chosen step.
+
+- Debugger command
+	- Use the `debugger` command inside a script to trigger a breakpoint programmatically.
+
+- Pause on exception
+	- Configure the IDE to pause execution when an exception is thrown for inspection.
+
+Control flow statements (IDE)
+
+- Conditional branching (if / else if / else / end)
+	- Use conditional logic to handle pop-ups or different flows depending on runtime state.
+	- Demo use case: store gender in a variable; if gender == 'male' click male radio button and select activity; else if female click female radio and select another activity.
+
+- Looping constructs
+	- while / end: Execute the block while the expression is true.
+	- do / repeat if: Execute the block once then evaluate condition.
+	- times / end: Run a block a fixed number of iterations.
+	- forEach: Iterate over collection (JS array) and execute commands for each entry.
+
+Control flow — concrete syntax examples
+
+1) while loop (incrementing counter)
+
+Command          | Target / Expression           | Value
+-----------------|-------------------------------|-------
+execute script   | return 1                      | counter
+while            | ${counter} < 5                |
+execute script   | return ${counter} + 1         | counter
+end              |                               |
+echo             | Counter value is : ${counter} |
+
+2) do / repeat if (add 10 until < 50)
+
+execute script   | return 0                      | counter
+do               |                               |
+execute script   | return ${counter} + 10        | counter
+echo             | ${counter}                    |
+repeat if        | ${counter} < 50               |
+echo             | Counter value is : ${counter} |
+
+3) times / end (fixed iterations)
+
+execute script   | return 100                    | counter
+times            | 2                             |
+execute script   | return ${counter} + 1         | counter
+end              |                               |
+echo             | The Value is : ${counter}     |
+
+4) if / else branching (gender example)
+
+open             | https://www.calculator.net/calorie-calculator.html |
+store            | F                             | varGender
+if               | ${varGender}=="F"            |
+click            | css=td > .cbcontainer:nth-child(2) .rbmark |
+select           | id=activity                    | label=Very Active: intense exercise 6-7 times/week
+click            | css=option:nth-child(6)        |
+else             |                               |
+select           | id=activity                    | label=Active: daily exercise or intense exercise 3-4 times/week
+click            | css=option:nth-child(5)        |
+end              |                               |
+
+5) forEach (iterate JS array)
+
+store            | ["a","b","c"]            | items
+forEach          | ${items}                      | item
+echo             | Processing item: ${item}      |
+end              |                               |
+
+
+
+
+- Assertions / Verifications
+	- Description: Commands that check the current state of the application against expected values.
+	- Examples: assertText, verifyText, assertElementPresent, verifyElementPresent
+	- Note: `assert` stops the test on failure; `verify` logs the failure but continues execution.
+
+# Debugger
+debugger |
+
+Selenium Side Runner / Command-line runner
+
+Overview:
+- The Selenium IDE can export .side projects that the Selenium Side Runner executes. The side-runner allows running tests in any browser, in parallel, and on a Grid.
+
+Prerequisites:
+- Node.js (recommended: Node 8 or 10)
+- npm (comes with Node.js)
+- Browser driver(s) (e.g., chromedriver, geckodriver)
+
+Install selenium-side-runner:
+- Install globally via npm:
+	npm install -g selenium-side-runner
+- Verify installation:
+	selenium-side-runner --version
+
+Install browser drivers:
+- Download the appropriate driver for your browser (e.g., chromedriver for Chrome).
+- Option: install chromedriver via npm globally:
+	npm install -g chromedriver
+
+Execute tests:
+- Run a .side project with default browser settings:
+	selenium-side-runner <projectname.side>
+- Run with a specific browser (example: Firefox):
+	selenium-side-runner -c "browserName=firefox" <projectname.side>
+
+Notes:
+- The side-runner can be configured to run tests in parallel and to target Selenium Grid.
+- See official docs: https://www.selenium.dev/selenium-ide/docs/en/introduction/command-line-runner/
