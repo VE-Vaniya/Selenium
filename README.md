@@ -23,7 +23,7 @@ The objective is to apply **Software Quality Engineering (SQE)** principles and 
 - **Muhammad Amar Waqar** – [AmarWaqar-TSKLI](https://github.com/AmarWaqar-TSKLI) – 23L-3035  
 - **Haseeb Ahmad** – [Haseebahmad22](https://github.com/Haseebahmad22) – 23L-3069  
 - **Muhammad Zain Tahir** – [Zain485576](https://github.com/Zain485576) – 23L-3078  
-- **Abdul Rafay** – ????
+- **Abdul Rafay** – [RAPHCRAP](https://github.com/RAPHCRAP) – 23L-3063
 
 ## Tech Stack
 - **Language:** Python  
