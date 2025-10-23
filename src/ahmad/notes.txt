@@ -1,0 +1,21 @@
+What is Selenium?
+
+- Selenium is an automated testing tool used to test web applications across various browsers.
+- Components of the Selenium suite:
+	- Selenium IDE
+	- Selenium RC
+	- Selenium WebDriver
+	- Selenium Grid
+
+What is Selenium IDE?
+
+- Developed by Shinya Kastani in 2006.
+- Originally a Firefox add-on that helps create tests.
+- Easy-to-use interface to build automated test scripts.
+- Records user interactions in the browser and exports them as reusable scripts.
+- Generally used as a rapid prototyping tool (can be used by engineers with no programming knowledge).
+
+Notes on Selenium IDE (summary):
+- Part of the Selenium suite aimed at speeding up the creation of automation scripts.
+- Useful for prototyping and for users who want to record-and-playback interactions.
+
