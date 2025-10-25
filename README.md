@@ -53,7 +53,7 @@ Python 3.13.7
 
 ## Project Setup Instructions
 
-### 1. Clone the Repository
+### Clone the Repository
 
 ```bash
 git clone https://github.com/VE-Vaniya/Selenium.git
