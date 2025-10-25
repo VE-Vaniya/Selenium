@@ -24,6 +24,10 @@ password = driver.find_element(By.XPATH, "//input[@id='password']")
 # password = driver.find_element(By.XPATH, "//input[ends-with(@id,'word')]")
 # product = driver.find_element(By.XPATH, "//div[text()='Sauce Labs Backpack']")
 # product = driver.find_element(By.XPATH, "//div[contains(text(),'Backpack')]")
+# password = driver.find_element(By.XPATH, "//input[@type='password'] and @id='password']") #and or
+# password = driver.find_element(By.XPATH, "//input[2]" ) #indexing starts from 1
+# product = driver.find_element(By.LINK_TEXT, "Sauce Labs Backpack") 
+
 password.send_keys("secret_sauce")
 time.sleep(1)
 
