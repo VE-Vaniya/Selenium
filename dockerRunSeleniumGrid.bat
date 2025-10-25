@@ -1,36 +1,27 @@
 @echo off
-REM Selenium Grid Run Script
+REM Remove Selenium Grid Containers and Network
 
 REM Configuration
 SET HUB_NAME=seleniumHub
-SET NETWORK_NAME=gridnetwork
-SET HUB_PORT=4445
-SET SELENIUM_VERSION=3.141.59
-
 SET CHROME_NODE_NAME=chromeNode
-SET CHROME_VNC_PORT=4446
-
 SET FIREFOX_NODE_NAME=firefoxNode
-SET FIREFOX_VNC_PORT=4447
+SET EDGE_NODE_NAME=edgeNode
+SET NETWORK_NAME=gridnetwork
 
-SET OPERA_NODE_NAME=operaNode
-SET OPERA_VNC_PORT=4448
+echo.
+echo   Removing Selenium Grid Containers...
+echo.
 
-REM Remove old containers if they exist
-docker rm -f %HUB_NAME% %CHROME_NODE_NAME% %FIREFOX_NODE_NAME% %OPERA_NODE_NAME% >nul 2>&1
+docker rm -f %HUB_NAME% %CHROME_NODE_NAME% %FIREFOX_NODE_NAME% %EDGE_NODE_NAME% >nul 2>&1
+echo Containers removed (if they existed).
 
-REM Run Hub
-docker run -d -p %HUB_PORT%:4444 --net %NETWORK_NAME% --name %HUB_NAME% selenium/hub:%SELENIUM_VERSION%
+echo.
+echo   Removing Docker Network...
+echo.
 
-REM Run Chrome Node
-docker run -d -p %CHROME_VNC_PORT%:5900 --net %NETWORK_NAME% -e HUB_HOST=%HUB_NAME% --name %CHROME_NODE_NAME% selenium/node-chrome-debug:%SELENIUM_VERSION%
+docker network rm %NETWORK_NAME% >nul 2>&1
+echo Network removed (if it existed).
 
-REM Run Firefox Node
-docker run -d -p %FIREFOX_VNC_PORT%:5900 --net %NETWORK_NAME% -e HUB_HOST=%HUB_NAME% --name %FIREFOX_NODE_NAME% selenium/node-firefox-debug:%SELENIUM_VERSION%
-
-REM Run Opera Node
-docker run -d -p %OPERA_VNC_PORT%:5900 --net %NETWORK_NAME% -e HUB_HOST=%HUB_NAME% --name %OPERA_NODE_NAME% selenium/node-opera-debug:%SELENIUM_VERSION%
-
-echo Selenium Grid is running!
-echo Open Hub console at: http://localhost:%HUB_PORT%/grid/console
+echo.
+echo All Selenium containers and network removed successfully!
 pause
