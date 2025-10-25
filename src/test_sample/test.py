@@ -1,12 +1,21 @@
-#for selenium web
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-# Selenium automatically manages ChromeDriver (version 4.6+)
-driver = webdriver.Chrome()
+driver = webdriver.Firefox()
+driver.get("https://the-internet.herokuapp.com/login")
 
-driver.get("https://techwithtim.net")
-print(f"Page title: {driver.title}")
+# Enter credentials
+driver.find_element(By.ID, "username").send_keys("tomsmith")
+driver.find_element(By.ID, "password").send_keys("S!")
+driver.find_element(By.CSS_SELECTOR, "button.radius").click()
 
-# Your test code continues here...
+# Simple if-else check
+if "secure" in driver.current_url:
+    print("✅ LOGIN SUCCESS - You're on the secure page!")
+    result = True
+else:
+    print("❌ LOGIN FAILED - Still on login page")
+    result = False
+
 driver.quit()
+print(f"Final result: {result}")
