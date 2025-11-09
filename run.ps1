@@ -4,4 +4,4 @@ if ($PWD.Path -ne $targetPath) {
     Set-Location -Path $targetPath
 }
 
-python "checkbox.py"
+python "dropdown.py"
