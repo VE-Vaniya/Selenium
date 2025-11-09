@@ -1,0 +1,78 @@
+Form controls cheat sheet
+
+- Checkboxes — for selecting multiple options.
+- Radio buttons — for choosing a single option.
+- Dropdowns — for picking one or more items from a list (single-select dropdown & multi-select dropdown).
+
+
+Tip for checkbox automation:
+--------------------------------
+
+Verify Before Clicking:
+Use is_selected() to check if a checkbox is already selected before clicking.
+
+if not ford_checkbox.is_selected():
+    ford_checkbox.click()
+
+Select All Checkboxes:
+Use find_elements() to handle multiple checkboxes.
+
+checkboxes = driver.find_elements(By.XPATH, "//input[@type='checkbox']")
+for checkbox in checkboxes:
+    checkbox.click()
+
+
+Methods for Drop-downs:
+
+select_by_visible_text("text") — Selects option by visible text.
+select_by_index(index) — Selects option by its index (starts from 0).
+select_by_value("value") — Selects option by the value attribute.
+deselect_by_visible_text("text") — Deselects option by visible text (for multi-select drop-downs).
+deselect_by_index(index) — Deselects option by index.
+deselect_by_value("value") — Deselects option by value attribute.
+deselect_all() — Deselects all selected options (only for multi-select drop-downs).
+all_selected_options — Returns all selected options as a list.
+first_selected_option — Returns the first selected option.
+options — Returns all options inside the drop-down.
+
+
+Step-by-step explanation:
+-------------------------
+
+dropdown = Select(driver.find_element(By.ID, "carBrands"))
+
+driver.find_element(By.ID, "carBrands"):
+
+This part locates the drop-down element on the webpage.
+By.ID means Selenium is searching for an HTML element with the id attribute set to "carBrands".
+Example of the corresponding HTML:
+
+<select id="carBrands">
+  <option value="toyota">Toyota</option>
+  <option value="honda">Honda</option>
+  <option value="tesla">Tesla</option>
+</select>
+
+Select(...):
+
+Selenium doesn't interact directly with drop-downs like it does with other elements.
+Select() is a special class in Selenium that is specifically designed to handle <select> tags (which create drop-downs).
+This wraps the located drop-down element, giving you access to methods like:
+select_by_value()
+select_by_visible_text()
+select_by_index()
+and more…
+
+Difference between Single and Multi-Select Dropdowns
+
+Single-select dropdowns:
+* Allow only one option to be selected at a time.
+* Selecting a new option replaces the previous selection.
+* No deselect() methods work here.
+
+Multi-select dropdowns:
+* Allow multiple options to be selected.
+* Support deselect methods:
+    * deselect_by_visible_text()
+    * deselect_by_index()
+    * deselect_by_value()
