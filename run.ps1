@@ -4,4 +4,4 @@ if ($PWD.Path -ne $targetPath) {
     Set-Location -Path $targetPath
 }
 
-python "keys.py"
+python "date.py"
