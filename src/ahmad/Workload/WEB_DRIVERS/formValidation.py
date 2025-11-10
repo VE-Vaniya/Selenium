@@ -40,6 +40,7 @@ SUBMIT = driver = driver.find_element(By.XPATH,"//button[@type='submit']")
 # EMAIL.send_keys("l233059@lhr.nu.edu.pk")
 # time.sleep(1)
 
+## cannot use values here cuz its disabled in html
 # CAMPUSES.select_by_visible_text("Lahore") #lahore
 # time.sleep(1)
 
