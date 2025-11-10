@@ -4,4 +4,4 @@ if ($PWD.Path -ne $targetPath) {
     Set-Location -Path $targetPath
 }
 
-python "dropdown.py"
+python "keys.py"
