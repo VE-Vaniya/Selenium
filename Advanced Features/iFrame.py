@@ -8,7 +8,7 @@ driver.get("https://the-internet.herokuapp.com/iframe")
 frame = driver.find_element(By.ID, "mce_0_ifr")
 driver.switch_to.frame(frame) 
 
-editor = driver.find_element(By.ID, "tinymce")  # now Selenium is inside frame ayo nahhhh
+editor = driver.find_element(By.ID, "tinymce")  # now Selenium is inside frame 
 editor.clear()
 editor.send_keys("Hello from Selenium!")
 
