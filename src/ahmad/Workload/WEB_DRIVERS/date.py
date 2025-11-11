@@ -9,27 +9,27 @@ import os
 
 driver = webdriver.Chrome()
 driver.maximize_window()
-driver.implicitly_wait(20)
+driver.implicitly_wait(60)
 
+#you can replcae driver.get("https://...") like this
+#I am reading from env file thats why i did like this
 load_dotenv()
-
 driver.get(os.getenv("WEB_DATE"))
 
-BOXy = driver.find_element(By.CLASS_NAME,"dIEany")
-BOXy.click()
-#14 JAN - 14 FEB
-NEXT_BTN = driver.find_element(By.XPATH,"//span[@data-testid='calendarRightArrowBtn']")
+DateField = driver.find_element(By.CLASS_NAME,"hasDatepicker")
+DateField.click()
+time.sleep(1)
 
-CHECK_IN = driver.find_element(By.XPATH,"//span[@data-testid='date_14_0_2026']")
-CHECK_OUT = driver.find_element(By.XPATH,"//span[@data-testid='date_14_1_2026']")
+# Click previous month button 11 times
+# actually its nov 2025 i want to select dec 2024
+PrevBtn = driver.find_element(By.XPATH,"//a[@class='ui-datepicker-prev ui-corner-all']")
+for i in range(11):
+    PrevBtn.click()
+    time.sleep(0.5)
 
-NEXT_BTN.click()
+# selected 11 dec 2024
+Datee = driver.find_element(By.XPATH,"//a[text()='11']")
+Datee.click()
 time.sleep(1)
-NEXT_BTN.click()
-time.sleep(1)
-CHECK_IN.click()
-time.sleep(1)
-CHECK_OUT.click()
-time.sleep(5)
 
 driver.close()
