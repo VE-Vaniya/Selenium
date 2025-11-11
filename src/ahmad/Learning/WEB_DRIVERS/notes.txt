@@ -1,0 +1,30 @@
+Summary of the Flow in Selenium 4
+
+1) Test Script -> sends command to WebDriver.
+2) WebDriver -> communicates with the Browser Driver using the W3C WebDriver protocol.
+3) Browser Driver -> receives command and sends it to the Browser.
+4) Browser -> executes the action (click, navigate, etc.) and returns a response to the Browser Driver.
+5) Browser Driver -> WebDriver -> Test Script receives the response.
+
+Common Browser Navigation
+
+- get(url): Opens a URL in the browser.
+- back(): Goes back to the previous page.
+- forward(): Moves forward to the next page (if any).
+- refresh(): Refreshes the current page.
+
+Interacting with Elements (examples)
+
+- find_element_by_id(id)
+- find_element_by_name(name)
+- find_element_by_xpath(xpath)
+- find_element_by_class_name(class_name)
+
+Browser Window Management
+
+- maximize_window(): Maximizes the browser window.
+- minimize_window(): Minimizes the browser window.
+
+Quit the Browser
+
+- quit(): Closes the browser and ends the WebDriver session.

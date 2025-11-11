@@ -53,24 +53,46 @@ Python 3.13.7
 
 ## Project Setup Instructions
 
-### 1. Clone the Repository
+### Clone the Repository
 
 ```bash
 git clone https://github.com/VE-Vaniya/Selenium.git
 ```
 
-### 2. Create and Activate Virtual Environment
+## Automatic setup
+It creates & activates venv, installs requirements.
 
-```bash
-python -m venv venv
-.\venv\Scripts\activate
+- PowerShell:
+
+```powershell
+.\setup.ps1
 ```
 
-*(Use `source venv/bin/activate` on macOS/Linux)*
+- Command Prompt:
 
-### 3. Install Dependencies
+```cmd
+setup.bat
+```
 
-```bash
+## Manual setup
+
+If you prefer to run steps manually, follow these minimal steps.
+
+1) Create a virtual environment
+
+```
+python -m venv .venv
+```
+
+2) Activate the virtual environment
+
+```
+.venv\Scripts\activate.bat
+```
+
+3) Install dependencies
+
+```
 pip install -r requirements.txt
 ```
 

@@ -1,0 +1,189 @@
+{
+  "id": "1dcb68a7-c2ab-48be-8f21-097aad6b21be",
+  "version": "2.0",
+  "name": "Lost&Found",
+  "url": "http://localhost:5173/feed",
+  "tests": [{
+    "id": "61d311bd-f29f-4a30-8124-7d7c4604d54c",
+    "name": "login",
+    "commands": [{
+      "id": "1cb94062-fd2b-42ce-a5c0-7677d43786f7",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:5173/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0cf1c207-8667-470e-b27a-5cde1876823c",
+      "comment": "Login btn in preview page",
+      "command": "click",
+      "target": "css=.md\\3Apx-10",
+      "targets": [
+        ["css=.md\\3Apx-10", "css:finder"],
+        ["xpath=//div[@id='root']/div[2]/header/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "39c91719-c8d8-46ea-a611-d6ac81d4d178",
+      "comment": "username field",
+      "command": "click",
+      "target": "css=.relative:nth-child(1) > .w-full",
+      "targets": [
+        ["css=.relative:nth-child(1) > .w-full", "css:finder"],
+        ["xpath=//input[@value='']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "83005000-b80a-4e30-afa8-dd5f4af70d22",
+      "comment": "",
+      "command": "type",
+      "target": "css=.relative:nth-child(1) > .w-full",
+      "targets": [
+        ["css=.relative:nth-child(1) > .w-full", "css:finder"],
+        ["xpath=//input[@value='23L-3059']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/div/div/div/form/div/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "23L-3058"
+    }, {
+      "id": "815ec05b-88da-425c-8679-599b3b29d42b",
+      "comment": "",
+      "command": "storeValue",
+      "target": "css=.relative:nth-child(1) > .w-full",
+      "targets": [],
+      "value": "rollNo"
+    }, {
+      "id": "669d67c0-c106-4457-9451-bfa88f2f8d13",
+      "comment": "",
+      "command": "echo",
+      "target": "${rollNo}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "417fd68e-e62c-45bb-a2c0-27957fa754b5",
+      "comment": "",
+      "command": "executeScript",
+      "target": "window.localStorage.setItem('rollNo', ${rollNo})",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "15134577-8706-432b-925e-0c67bf90b342",
+      "comment": "password field",
+      "command": "click",
+      "target": "css=.relative:nth-child(2) > .w-full",
+      "targets": [
+        ["css=.relative:nth-child(2) > .w-full", "css:finder"],
+        ["xpath=//input[@value='']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c55ad5b5-2ac6-4dc0-b6be-8052b7da155c",
+      "comment": "",
+      "command": "type",
+      "target": "css=.relative:nth-child(2) > .w-full",
+      "targets": [
+        ["css=.relative:nth-child(2) > .w-full", "css:finder"],
+        ["xpath=//input[@value='Hello123!']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/div/div/div/form/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Hello123!"
+    }, {
+      "id": "b8d695dc-eaf2-4558-9183-e1c3d3d03092",
+      "comment": "login btn in login page",
+      "command": "click",
+      "target": "css=.bg-black",
+      "targets": [
+        ["css=.bg-black", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div[2]/div/div/div/form/button", "xpath:idRelative"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e0c138c4-bfd1-435e-bbbc-cc7f55dafb58",
+      "comment": "",
+      "command": "//close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "56a4692f-b6c4-4205-a5b6-3432d63ab471",
+    "name": "comment",
+    "commands": [{
+      "id": "4aaadd78-3bad-4a39-ad1c-4a88b863ce4d",
+      "comment": "",
+      "command": "run",
+      "target": "login",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1faf8487-b9b8-4e10-9acb-730f2057434b",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return window.localStorage.getItem('rollNo').trim()",
+      "targets": [],
+      "value": "rollNo"
+    }, {
+      "id": "10de1d33-7731-4278-9ad2-77ab226a91b4",
+      "comment": "",
+      "command": "echo",
+      "target": "${rollNo}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1971f069-17e0-4ce1-8841-0f6b307ddb04",
+      "comment": "",
+      "command": "if",
+      "target": "${rollNo}==='23L-3058'",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "81244244-fd96-4315-85b6-ef25b37ecd5d",
+      "comment": "",
+      "command": "echo",
+      "target": "if part run",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "caef6923-0218-457c-b411-ed29e192cd26",
+      "comment": "",
+      "command": "else",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "45bd73df-060e-4eb5-8961-8f73ceebac0b",
+      "comment": "",
+      "command": "echo",
+      "target": "else part run",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "69e17700-a708-4a4a-8c04-acd1cb327737",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "8d9dd9c5-6488-4988-8e48-90ef08a70886",
+    "name": "PreviewSuite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["56a4692f-b6c4-4205-a5b6-3432d63ab471", "61d311bd-f29f-4a30-8124-7d7c4604d54c"]
+  }],
+  "urls": ["http://localhost:5173/", "http://localhost:5173/feed"],
+  "plugins": []
+}
