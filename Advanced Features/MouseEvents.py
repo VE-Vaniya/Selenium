@@ -7,14 +7,14 @@ driver = webdriver.Firefox()
 
 # hover mouse event
 driver.get("https://the-internet.herokuapp.com/hovers")
-hover_element = driver.find_element(By.CSS_SELECTOR, ".figure")
+hover_element = driver.find_element(By.XPATH, "//img[@src='/img/avatar-blank.jpg']")
 actions = ActionChains(driver)
 actions.move_to_element(hover_element).perform()
 
-# profile_Text = hover_element.find_element(By.CSS_SELECTOR, ".figcaption")
-# print(profile_Text.text)
+profile_Text = driver.find_element(By.XPATH, "//div[@class='figcaption']")
+print(profile_Text.text)
 
-# driver.quit()
+driver.quit()
 
 # # right click mouse event
 # driver.get("https://swisnl.github.io/jQuery-contextMenu/demo.html")
