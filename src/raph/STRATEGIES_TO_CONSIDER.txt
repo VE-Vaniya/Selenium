@@ -1,0 +1,194 @@
+1️⃣ Always Use Explicit Waits
+
+Never rely purely on time.sleep(); it’s fragile.
+
+Use WebDriverWait with conditions (presence_of_element_located, element_to_be_clickable, etc.).
+
+This adapts to network latency, slow rendering, and AJAX content.
+
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+element = WebDriverWait(driver, 10).until(
+    EC.element_to_be_clickable((By.ID, "submit"))
+)
+element.click()
+
+
+✅ Strategy: Always wait for elements before interacting.
+
+2️⃣ Use Robust & Flexible Locators
+
+Avoid absolute XPaths or auto-generated IDs.
+
+Prefer:
+
+By.ID (if stable)
+
+By.NAME
+
+By.CSS_SELECTOR with class, attributes
+
+By.XPATH with contains(), starts-with()
+
+Example:
+
+# Instead of /html/body/div[2]/div/button[1]
+driver.find_element(By.XPATH, "//button[contains(text(), 'Submit')]")
+
+
+✅ Strategy: Locators should survive minor DOM changes.
+
+3️⃣ Modularize Repeated Actions
+
+Build helper functions for repetitive tasks:
+
+Clicking elements
+
+Typing text
+
+Waiting for visibility
+
+Switching frames/windows
+
+def click_when_visible(locator, timeout=10):
+    elem = WebDriverWait(driver, timeout).until(
+        EC.element_to_be_clickable(locator)
+    )
+    elem.click()
+
+
+✅ Strategy: Modular code → less repetition, easier maintenance.
+
+4️⃣ Handle Dynamic Elements Gracefully
+
+Check if elements exist before clicking.
+
+Handle stale elements with staleness_of.
+
+Wrap interactions in try-except blocks to prevent script crash.
+
+from selenium.common.exceptions import StaleElementReferenceException
+
+try:
+    driver.find_element(By.ID, "dynamic").click()
+except StaleElementReferenceException:
+    print("Element changed, retrying...")
+
+
+✅ Strategy: Scripts should fail gracefully.
+
+5️⃣ Use Page Objects & Structured Design
+
+For large projects, separate page-specific locators and actions in classes.
+
+Page Object Model (POM) makes code scalable and readable.
+
+# login_page.py
+class LoginPage:
+    def __init__(self, driver):
+        self.driver = driver
+        self.username = (By.ID, "username")
+        self.password = (By.ID, "password")
+        self.submit = (By.CLASS_NAME, "radius")
+    
+    def login(self, user, pwd):
+        self.driver.find_element(*self.username).send_keys(user)
+        self.driver.find_element(*self.password).send_keys(pwd)
+        self.driver.find_element(*self.submit).click()
+
+
+✅ Strategy: Encapsulate locators + interactions per page.
+
+6️⃣ Browser & Session Management
+
+Always maximize window to avoid hidden elements.
+
+Cleanly close or quit driver to avoid hanging processes.
+
+Use options for headless mode or mobile simulation.
+
+options = Options()
+options.add_argument("--start-maximized")
+driver = webdriver.Chrome(service=service, options=options)
+
+
+✅ Strategy: Consistent environment → fewer unexpected failures.
+
+7️⃣ Logging & Debugging
+
+Print/log meaningful info:
+
+Element text or attributes before/after actions
+
+Success/failure messages
+
+URL changes and page loads
+
+print(f"Clicked button with text: {button.text}")
+
+
+Optional: Use Python logging for larger projects.
+
+✅ Strategy: Always know what your script did.
+
+8️⃣ Flexible Navigation & Flow Control
+
+Handle back, forward, refresh when needed.
+
+Switch between tabs/windows/frames gracefully.
+
+Example: driver.switch_to.window(handle) or driver.switch_to.frame(iframe)
+
+✅ Strategy: Scripts should adapt to page flow, not assume static paths.
+
+9️⃣ Handle Unexpected Popups & Modals
+
+Always check if alerts, modals, or banners exist before interacting with main page.
+
+Close or accept them to prevent blockage.
+
+from selenium.common.exceptions import NoAlertPresentException
+
+try:
+    alert = driver.switch_to.alert
+    alert.accept()
+except NoAlertPresentException:
+    pass  # No alert, continue
+
+
+✅ Strategy: Scripts are resilient to interruptions.
+
+🔟 Data-Driven & Parameterized Inputs
+
+Keep input data separate from code:
+
+Use CSV, JSON, or .env files
+
+Makes scripts reusable for multiple scenarios
+
+import csv
+with open("input_data.csv") as f:
+    for row in csv.reader(f):
+        login_page.login(row[0], row[1])
+
+
+✅ Strategy: Scripts are flexible and testable across multiple datasets.
+
+11️⃣ Recovery & Retry Logic
+
+For flaky websites, add retry loops with waits.
+
+Example: Retry clicking if ElementClickInterceptedException occurs.
+
+from selenium.common.exceptions import ElementClickInterceptedException
+
+for _ in range(3):
+    try:
+        driver.find_element(By.ID, "btn").click()
+        break
+    except ElementClickInterceptedException:
+        time.sleep(1)
+
+
+✅ Strategy: Scripts recover from temporary failures automatically.

@@ -1,0 +1,40 @@
+.
+
+🌐 What is a WebDriver?
+
+A WebDriver is a bridge between your Python code and the actual browser.
+When you run a Selenium script:
+
+Selenium sends commands → WebDriver.
+
+WebDriver translates them → the browser (Chrome, Edge, etc.).
+
+The browser executes actions and sends results back.
+
+
+
+
+🧠 Key Concepts Before Coding
+Concept	Meaning	Example
+
+Driver	    |   Object controlling the browser	    |   driver = webdriver.Chrome()
+
+Session     |   Browser instance running commands   |	Started when you create driver
+
+DriverManager   |   Auto-downloads the right driver version    |	ChromeDriverManager().install()
+
+Options |	Add browser-specific settings       |   headless mode, incognito, start-maximized
+
+Service |	Handles background driver process   |	used when customizing setup
+
+
+
+
+⚙️ TYPES OF SETUPS
+
+We’ll make 3 tiers of setup examples:
+
+Tier	         |           Focus	
+1️⃣	Basic setup   |       (open/close browser)	    basicSetup.py
+2️⃣	Setup with    |        options & capabilities	    BrowserOptions.py
+3️⃣	Multi-browser |       support	                MultiBrowserSetup.py
