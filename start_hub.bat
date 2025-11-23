@@ -1,1 +1,0 @@
-java -jar D:\Selenium_Grid\selenium-server-4.38.0.jar hub
