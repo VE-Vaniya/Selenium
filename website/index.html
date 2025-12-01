@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selenium Demo Store</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Login Page -->
+    <div id="login-page" class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>Welcome Back</h1>
+                <p>Sign in to continue to the store</p>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" class="form-input" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" class="form-input" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </form>
+            <div class="credentials-box">
+                <p>Accepted usernames are:</p>
+                <code>test</code>
+                <p style="margin-top: 0.5rem">Password for all users:</p>
+                <code>123</code>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Page (Hidden by default) -->
+    <div id="main-page" style="display: none;">
+        <nav class="navbar">
+            <div class="container nav-content">
+                <a href="#" class="logo">SeleniumStore</a>
+                <button id="cart-btn" class="cart-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span id="cart-count" class="cart-badge">0</span>
+                </button>
+            </div>
+        </nav>
+
+        <main class="container">
+            <div class="filters-section">
+                <select id="category-filter" class="form-input" style="width: auto;">
+                    <option value="all">All Categories</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="accessories">Accessories</option>
+                    <option value="toys">Toys</option>
+                </select>
+            </div>
+
+            <div id="product-grid" class="product-grid">
+                <!-- Products will be injected here -->
+            </div>
+        </main>
+
+        <!-- Cart Modal -->
+        <div id="cart-modal" class="modal-overlay">
+            <div class="cart-sidebar">
+                <div class="cart-header">
+                    <h2>Your Cart</h2>
+                    <button id="close-cart" class="close-cart">&times;</button>
+                </div>
+                <div id="cart-items" class="cart-items">
+                    <!-- Cart items will be injected here -->
+                </div>
+                <div class="cart-footer">
+                    <div class="cart-total">
+                        <span>Total:</span>
+                        <span id="cart-total">PKR 0</span>
+                    </div>
+                    <button id="checkout-btn" class="btn btn-primary">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

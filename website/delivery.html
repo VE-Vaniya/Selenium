@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Information</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="delivery-container">
+        <form id="delivery-form" class="delivery-form">
+            <h2 style="margin-bottom: 2rem;">Delivery Details</h2>
+
+            <div class="form-group">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" id="firstName" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" id="lastName" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="postalCode" class="form-label">Postal Code</label>
+                <input type="text" id="postalCode" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="deliveryType" class="form-label">Delivery Type</label>
+                <select id="deliveryType" class="form-input">
+                    <option value="standard">Standard Delivery</option>
+                    <option value="express">Express Delivery</option>
+                    <option value="premium">Premium Delivery</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="coupons" class="form-label">Apply Coupons (Max 5)</label>
+                <select id="coupons" class="form-input select-multi" multiple>
+                    <option value="save10">SAVE10 (-10 PKR)</option>
+                    <option value="save20">SAVE20 (-10 PKR)</option>
+                    <option value="save30">SAVE30 (-10 PKR)</option>
+                    <option value="save40">SAVE40 (-10 PKR)</option>
+                    <option value="save50">SAVE50 (-10 PKR)</option>
+                    <option value="save60">SAVE60 (-10 PKR)</option>
+                    <option value="save70">SAVE70 (-10 PKR)</option>
+                </select>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem;">Hold Ctrl/Cmd to
+                    select multiple</p>
+            </div>
+
+            <div class="form-group">
+                <label for="tags" class="form-label">Tags</label>
+                <select id="tags" class="form-input select-multi" multiple>
+                    <option value="products">Products</option>
+                    <option value="items">Items</option>
+                    <option value="sale">Sale</option>
+                    <option value="new">New Arrival</option>
+                    <option value="limited">Limited Edition</option>
+                </select>
+                <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem;">Hold Ctrl/Cmd to
+                    select multiple</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Confirm Order</button>
+        </form>
+
+        <div id="confirmation-screen" style="display: none; text-align: center; padding: 2rem;">
+            <h1 style="color: var(--secondary-color); margin-bottom: 1rem;">Order Confirmed!</h1>
+            <p style="margin-bottom: 2rem; color: var(--text-secondary);">Thank you for your purchase. Your order has
+                been successfully placed.</p>
+            <button onclick="goHome()" class="btn btn-primary">Back to Home</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
