@@ -19,7 +19,7 @@ The objective is to apply **Software Quality Engineering (SQE)** principles and 
 **Team Lead:** Vania Ejaz – [VE-Vaniya](https://github.com/VE-Vaniya) – 23L-3037
 
 **Contributors:**
-- **Muhammad Ahmad Butt** – [A-git-nerd](https://github.com/A-git-nerd) – 23L-3059  
+- **Muhammad Ahmad Butt** – [m-ahmad-butt](https://github.com/m-ahmad-butt) – 23L-3059  
 - **Muhammad Amar Waqar** – [AmarWaqar-TSKLI](https://github.com/AmarWaqar-TSKLI) – 23L-3035  
 - **Haseeb Ahmad** – [Haseebahmad22](https://github.com/Haseebahmad22) – 23L-3069  
 - **Muhammad Zain Tahir** – [Zain485576](https://github.com/Zain485576) – 23L-3078  
