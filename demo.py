@@ -15,12 +15,10 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.wait import WebDriverWait
 
-load_dotenv()
-
 driver = webdriver.Chrome()
 driver.maximize_window()
 
-driver.get(f"http://{os.getenv('IP')}:5500/website/index.html")
+driver.get("http://192.168.100.10:5500/website/index.html")
 
 wait = WebDriverWait(driver,10)
 
@@ -115,7 +113,6 @@ try:
             print(i)
             print(parent_id)
             driver.switch_to.window(i)
-            print("swi")
             
     time.sleep(2)
     iframe = wait.until(
@@ -186,13 +183,11 @@ try:
     al.accept()    
     al.accept()
     
-    print("b")
     wait.until(
         EC.visibility_of_element_located(
             (By.XPATH,"//button[text()='Back to Home']")
         )
     ).click()
-    print("a")
     
     driver.switch_to.default_content()
     time.sleep(2)
